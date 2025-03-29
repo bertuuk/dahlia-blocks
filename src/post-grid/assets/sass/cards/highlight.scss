@@ -1,0 +1,42 @@
+@use './../../../../../assets/sass/vars' as *;
+.post-grid-item{
+    .card-style__wrapper.card-style__highlight{
+        .card-style__content {
+            .content-bottom{
+                padding-left: 35px;
+				padding-right: 35px;
+				padding-bottom: 35px;
+				@media(max-width:$screen-lg) {
+					font-size: 1.25rem;
+					padding-left: 20px;
+					padding-right: 20px;
+                    padding-bottom: 20px;
+				}
+                .content-title{
+                    font-size: 2rem;
+                    line-height: 2.5rem;
+                    @media(min-width:$screen-lg) {
+                        font-size: 2.3rem;
+                        line-height: 2.8rem;
+                    }
+                }
+                .card-button{
+                    display:inline-flex;
+                    gap:5px;
+                    width: fit-content;
+                    backdrop-filter: blur(5px);
+                    background-color: white;
+                    background: rgba(0, 0, 0, 0.41);
+                    padding: 12px;
+                    font-size: 1rem;
+                    border-radius: 0.5rem;
+                    color: #ffffff;
+                    margin-top: 0.62rem;
+                    .dahlia-icon{
+                        background: #ffffff;
+                    }
+                }
+            }
+        }
+    }
+}

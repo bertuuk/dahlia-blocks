@@ -1,0 +1,1 @@
+{"version":3,"file":"category-cover/index.css","mappings":";;;AAAA;EACA;EACA;EACA;AACA,C","sources":["webpack://dahlia-blocks/./src/category-cover/editor.scss"],"sourcesContent":[".wp-block-dahlia-blocks-category-cover {\nmin-height:300px;\nmin-width:100%;\nbackground-color:#f2f2f2;\n}"],"names":[],"sourceRoot":""}

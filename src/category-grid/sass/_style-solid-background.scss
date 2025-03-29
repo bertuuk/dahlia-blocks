@@ -1,0 +1,126 @@
+@use './../../../assets/sass/vars' as *;
+
+.wp-block-dahlia-blocks-category-grid.is-style-category-grid-solid-background {
+    .category-grid {
+        &__container {
+            gap: var(--grid-gap-sm, 1.2rem);
+            @media(min-width:$screen-lg) {
+                gap: var(--grid-gap-lg, 1.4rem);
+            }
+        }
+    }
+
+    .category-card {
+
+        &__outer {}
+
+        &__container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            gap: 18px;
+            padding: 1.5rem 1rem;
+            background-color: $primary-01;
+            border-radius: 16px;
+            overflow: hidden;
+            background: $gradient-0607;
+            box-shadow:$drop-shadow-04;
+
+            @media(min-width:$screen-lg) {
+                padding: 2rem 1.5rem;
+            }
+
+
+
+
+            .card-icon {
+                &__outer {
+                    background-color:$primary-01;
+                    border-radius:48px;
+                    padding:12px;
+                    z-index:10;
+
+                }
+
+                &__container {
+                    .dahlia-icon{
+                        background-color: $primary-06;
+                        width: 1.8rem;
+                        height: 1.8rem;
+                    }
+                }
+            }
+        }
+
+        &__content {
+            z-index: 10;
+            text-align: center;
+            font-size: 1.2rem;
+            line-height: 1.13;
+
+            a {
+                color: $white;
+
+            }
+        }
+    }
+
+    .is-card-size {
+
+        &-medium {
+            .category-card__container {
+                padding: 2rem 1rem;
+                min-height: 160px;
+                gap: 23px;
+
+                @media(min-width:$screen-lg) {
+                    padding: 2.3rem 1.8rem;
+                    min-height: 230px;
+                }
+                .card-icon__outer {
+                    padding: 17px
+                }
+
+                .dahlia-icon{
+                    width: 2.2rem;
+                    height: 2.2rem;
+                }
+            }
+
+            .category-card__content {
+                font-size: 1.3rem;
+                @media(min-width:$screen-lg) {
+                font-size: 1.5rem;
+                }
+            }
+        }
+
+        &-large {
+            .category-card__container {
+                padding: 2.5rem 2rem;
+                min-height: 270px;
+                gap: 30px;
+
+                .card-icon__outer {
+                    padding: 18px
+                }
+
+                .dahlia-icon{
+                   
+                    width: 2.6rem;
+                    height: 2.6rem;
+
+                }
+            }
+
+            .category-card__content {
+                font-size: 1.875rem;
+
+
+            }
+
+        }
+    }
+}

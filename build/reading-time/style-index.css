@@ -1,0 +1,31 @@
+/*!****************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/reading-time/style.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************/
+.wp-block-dahlia-blocks-reading-time {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 1rem;
+  background-color: var(--wp--preset--color--color-primary-01);
+  color: var(--wp--preset--color--color-primary-06);
+  font-weight: 600;
+  text-transform: uppercase;
+  border-radius: 32px;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.wp-block-dahlia-blocks-reading-time.is-style-small {
+  font-size: 0.8rem;
+  padding: 3px 8px;
+}
+.wp-block-dahlia-blocks-reading-time.is-style-medium {
+  font-size: 1rem;
+  padding: 5px 10px;
+}
+.wp-block-dahlia-blocks-reading-time.is-style-large {
+  font-size: 1.2rem;
+  padding: 6px 12px;
+}
+
+/*# sourceMappingURL=style-index.css.map*/

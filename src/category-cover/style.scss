@@ -1,0 +1,64 @@
+@use './../../assets/sass/vars' as *;
+
+.wp-block-dahlia-blocks-category-cover {
+    .archive-cover {
+        &__outer {
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: relative;
+            display:flex;
+            @media(min-width:$screen-lg){
+                min-height:650px;
+            }
+
+            &:before {
+                @include image-overlay;
+                background: linear-gradient(0deg, rgba(0, 0, 0, 0.75) 10%, transparent 100%);
+                backdrop-filter: blur(3px);
+                @media(min-width:$screen-sm){
+                    background: linear-gradient(47deg, rgba(0, 0, 0, 0.8) 15%, transparent 90%);
+                    backdrop-filter: blur(0);
+                }
+                @media(min-width:$screen-lg){
+                    background: linear-gradient(62deg, rgba(0, 0, 0, 0.7) 15%, transparent 85%);
+
+                }
+            }
+        }
+
+        &__container {
+            max-width: var(--wp--style--global--wide-size);
+            margin-left: auto !important;
+            margin-right: auto !important;
+            min-height:100%;
+            padding:7rem .7rem 1rem;
+            z-index:10;
+            width:100%;
+            @media(min-width:$screen-xl){
+                padding:7rem 0rem 4rem;
+            }
+            .main-content{
+                display:flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                height:100%;
+                color:$white;
+                text-shadow: 1px 1px 5px rgba(0, 0, 0, .4);
+                &__title{
+                    font-size:var(--wp--preset--font-size--x-large, 1.2rem);
+                }
+                &__description{
+                    font-size:var(--wp--preset--font-size--base, 1.2rem);
+                    max-width:500px;
+                    @media(min-width:$screen-xl){
+                        font-size:var(--wp--preset--font-size--medium, 1.2rem);
+                        max-width:600px;
+                    }
+                }
+            }
+        }
+    }
+
+
+}

@@ -1,0 +1,227 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+@use './../../assets/sass/vars' as *;
+@use './assets/sass/cards';
+
+.wp-block-dahlia-blocks-post-grid {
+	.post-grid-carousel-header {
+		display: flex;
+		flex-direction: column;
+		padding-bottom: 25px;
+
+		@media(min-width: $screen-lg) {
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		h1,
+		h2,
+		h3,
+		h4 {
+			margin: 0;
+			font-size: 1.875rem;
+			font-style: normal;
+			font-weight: 700;
+			line-height: 2.125rem;
+			transform: translateY(4px);
+			/* Ajusta según necesites */
+			/* 113.333% */
+		}
+	}
+
+	.tns-controls {
+		display: flex;
+		position: relative;
+		z-index: 10;
+		gap: 12px;
+
+		>.button {}
+	}
+
+	.tns-outer {
+		position: relative;
+
+
+		.tns-nav {
+			z-index: 10;
+		}
+
+		>.tns-ovh {
+			>.tns-inner {}
+		}
+	}
+
+}
+
+.outer-container-carousel {
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+
+	&:after {
+		content: '';
+		position: absolute;
+		height: 100%;
+		width: 12%;
+		bottom: 0;
+		left: 0;
+		background: linear-gradient(90deg,  rgba(250, 250, 250, 0.74) 0%, rgba(250, 250, 250, 0) 100%);
+		z-index: 1;
+	}
+
+	&:before {
+		content: '';
+		position: absolute;
+		height: 100%;
+		width: 12%;
+		bottom: 0;
+		right: 0;
+		background: linear-gradient(-90deg, rgba(250, 250, 250, 0.74) 0%, rgba(250, 250, 250, 0) 100%);
+		z-index: 1;
+	}
+
+	.tns-outer {
+		>.tns-ovh {
+			overflow: visible;
+		}
+	}
+}
+
+.wrapper-grid{
+	@media(max-width:$screen-xl) {
+		overflow:hidden;
+	}
+}
+.post-grid.post-grid-grid {
+	--grid-gap-lg: 30px;
+	--grid-gap-sm: 15px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--grid-gap-sm);
+	justify-content: flex-start;
+	
+	&:not(.row-items-sm-1){
+		margin-right: -15px;
+	}
+	
+	@media(min-width:$screen-xl) {
+		padding:0;
+		gap: var(--grid-gap-lg);
+		&:not(.row-items-lg-1){
+			margin-right: 0;
+		}
+	}
+	&.row-items-sm {
+		&-1 {
+			.post-grid-item--outter {
+				width:100%;
+				margin-bottom: calc(var(--grid-gap-sm) / 1)
+				
+			}
+		}
+
+		&-2 {
+			.post-grid-item--outter {
+				width: calc(50% - (var(--grid-gap-sm)));
+				margin-bottom: calc(var(--grid-gap-sm) / 2)
+			}
+		}
+
+		&-3 {
+			.post-grid-item--outter {
+				width: calc(33.3333% - (var(--grid-gap-sm)));
+				margin-bottom: calc(var(--grid-gap-sm) / 3);
+
+			}
+		}
+
+		&-4 {
+			.post-grid-item--outter {
+				width: calc(25% - (var(--grid-gap-sm)));
+				margin-bottom: calc(var(--grid-gap-sm) / 4);
+
+			}
+		}
+		&-5 {
+			.post-grid-item--outter {
+				width: calc(20% - (var(--grid-gap-sm)));
+				margin-bottom: calc(var(--grid-gap-sm) / 5);
+
+			}
+		}
+		&-6 {
+			.post-grid-item--outter {
+				width: calc(16.6666% - (var(--grid-gap-sm)));
+				margin-bottom: calc(var(--grid-gap-sm) / 6);
+
+			}
+		}
+		&-7 {
+			.post-grid-item--outter {
+				width: calc(14.2857% - (var(--grid-gap-sm)));
+				margin-bottom: calc(var(--grid-gap-sm) / 7);
+
+			}
+		}
+	}
+	@media(min-width:$screen-xl) {
+		&.row-items-lg {
+			&-1 {
+				.post-grid-item--outter {
+					width:100%;
+					margin-bottom: calc(var(--grid-gap-lg) / 1)
+					
+				}
+			}
+	
+			&-2 {
+				.post-grid-item--outter {
+					width: calc(50% - (var(--grid-gap-lg)));
+					margin-bottom: calc(var(--grid-gap-lg) / 2)
+				}
+			}
+	
+			&-3 {
+				.post-grid-item--outter {
+					width: calc(33.3333% - (var(--grid-gap-lg)));
+					margin-bottom: calc(var(--grid-gap-lg) / 3);
+	
+				}
+			}
+	
+			&-4 {
+				.post-grid-item--outter {
+					width: calc(25% - (var(--grid-gap-lg)));
+					margin-bottom: calc(var(--grid-gap-lg) / 4);
+	
+				}
+			}
+			&-5 {
+				.post-grid-item--outter {
+					width: calc(20% - (var(--grid-gap-lg)));
+					margin-bottom: calc(var(--grid-gap-lg) / 5);
+	
+				}
+			}
+			&-6 {
+				.post-grid-item--outter {
+					width: calc(16.6666% - (var(--grid-gap-lg)));
+					margin-bottom: calc(var(--grid-gap-lg) / 6);
+	
+				}
+			}
+			&-7 {
+				.post-grid-item--outter {
+					width: calc(14.2857% - (var(--grid-gap-lg)));
+					margin-bottom: calc(var(--grid-gap-lg) / 7);
+	
+				}
+			}
+		}
+	}
+}

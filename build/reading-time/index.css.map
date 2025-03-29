@@ -1,0 +1,1 @@
+{"version":3,"file":"reading-time/index.css","mappings":";;;AAAA;EACI;EACA;EACA;AACJ;AACI;EACI;AACR,C","sources":["webpack://dahlia-blocks/./src/reading-time/editor.scss"],"sourcesContent":[".reading-time {\n    font-size: 16px;\n    color: #666;\n    opacity: 0.8;\n\n    &:hover {\n        color: #000;\n    }\n}"],"names":[],"sourceRoot":""}

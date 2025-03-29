@@ -1,0 +1,32 @@
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.wp-block-dahlia-blocks-post-grid {
+	pointer-events: none;
+	.post-grid{
+		display:flex;
+		flex-wrap:wrap;
+		.post-grid-item--outter{
+			width:25%;
+			&:nth-child(n+9) { // Oculta a partir del quinto elemento
+				display: none;
+			}
+			.card-style__content{
+				position:relative;
+				&:before{
+					
+				}
+			}
+		}
+		&.post-grid-carousel{
+			.post-grid-item--outter{
+				&:nth-child(n+5) { 
+					display: none;
+				}
+			}
+		}
+	}
+}

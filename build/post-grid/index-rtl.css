@@ -1,0 +1,27 @@
+/*!**************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/post-grid/editor.scss ***!
+  \**************************************************************************************************************************************************************************************************************************************************/
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.wp-block-dahlia-blocks-post-grid {
+  pointer-events: none;
+}
+.wp-block-dahlia-blocks-post-grid .post-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+.wp-block-dahlia-blocks-post-grid .post-grid .post-grid-item--outter {
+  width: 25%;
+}
+.wp-block-dahlia-blocks-post-grid .post-grid .post-grid-item--outter:nth-child(n+9) {
+  display: none;
+}
+.wp-block-dahlia-blocks-post-grid .post-grid .post-grid-item--outter .card-style__content {
+  position: relative;
+}
+.wp-block-dahlia-blocks-post-grid .post-grid.post-grid-carousel .post-grid-item--outter:nth-child(n+5) {
+  display: none;
+}

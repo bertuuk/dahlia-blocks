@@ -1,0 +1,53 @@
+/*!*******************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/story-container/style.scss ***!
+  \*******************************************************************************************************************************************************************************************************************************************************/
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.wp-block-dahlia-blocks-story-container {
+  position: relative;
+  transition: all 0.2s ease-in-out;
+}
+.wp-block-dahlia-blocks-story-container.font-size-0 p {
+  font-size: 20px;
+}
+.wp-block-dahlia-blocks-story-container.font-size-1 p {
+  font-size: 25px;
+}
+.wp-block-dahlia-blocks-story-container.font-size-2 p {
+  font-size: 30px;
+}
+.wp-block-dahlia-blocks-story-container.font-size-3 p {
+  font-size: 35px;
+}
+
+.story-container-controls {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.story-container-controls button {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  background-color: #eee;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.story-container-controls button:hover {
+  background-color: #ddd;
+}
+
+.story-block-font {
+  font-family: "Quicksand", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  line-height: 1.7;
+}
+
+/*# sourceMappingURL=style-index.css.map*/

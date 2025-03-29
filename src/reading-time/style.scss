@@ -1,0 +1,30 @@
+@use './../../assets/sass/vars' as *;
+.wp-block-dahlia-blocks-reading-time {
+    padding-left:10px;
+    padding-right:10px;
+    padding-top:5px;
+    padding-bottom:5px;
+    font-size: 1rem;
+    background-color: var(--wp--preset--color--color-primary-01);
+    color: var(--wp--preset--color--color-primary-06);
+    font-weight:600;
+    text-transform:uppercase;
+    border-radius:32px;
+    width:fit-content;
+    &.is-style-small {
+        font-size: 0.8rem;
+        padding: 3px 8px;
+    }
+    
+    &.is-style-medium {
+        font-size: 1rem;
+        padding: 5px 10px;
+    }
+    
+    &.is-style-large {
+        font-size: 1.2rem;
+        padding: 6px 12px;
+    }
+}
+
+
