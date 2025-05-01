@@ -2,10 +2,10 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/category-cover/edit.js":
-/*!************************************!*\
-  !*** ./src/category-cover/edit.js ***!
-  \************************************/
+/***/ "./src/category-featured-image/edit.js":
+/*!*********************************************!*\
+  !*** ./src/category-featured-image/edit.js ***!
+  \*********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -24,7 +24,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./editor.scss */ "./src/category-cover/editor.scss");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./editor.scss */ "./src/category-featured-image/editor.scss");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__);
 /**
@@ -72,36 +72,42 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 function Edit({
-  attributes,
-  setAttributes
+  attributes
 }) {
-  const {} = attributes;
-  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps)();
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-      ...blockProps,
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)((_wordpress_server_side_render__WEBPACK_IMPORTED_MODULE_4___default()), {
-        block: "dahlia-blocks/category-cover",
-        attributes: attributes
-      })
-    })]
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps)({
+    className: 'wp-block-category-featured-image',
+    style: {
+      aspectRatio: attributes.aspectRatio || '1',
+      backgroundColor: '#eee',
+      borderRadius: 'var(--wp--preset--spacing--small, 8px)',
+      // ajustable amb controls
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
+    }
+  });
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+    ...blockProps,
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+      children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Category Featured Image', 'dahlia-blocks')
+    })
   });
 }
 
 /***/ }),
 
-/***/ "./src/category-cover/index.js":
-/*!*************************************!*\
-  !*** ./src/category-cover/index.js ***!
-  \*************************************/
+/***/ "./src/category-featured-image/index.js":
+/*!**********************************************!*\
+  !*** ./src/category-featured-image/index.js ***!
+  \**********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
 /* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./src/category-cover/style.scss");
-/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/category-cover/edit.js");
-/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./block.json */ "./src/category-cover/block.json");
+/* harmony import */ var _style_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style.scss */ "./src/category-featured-image/style.scss");
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/category-featured-image/edit.js");
+/* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./block.json */ "./src/category-featured-image/block.json");
 /**
  * Registers a new block provided a unique name and an object defining its behavior.
  *
@@ -138,10 +144,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/category-cover/editor.scss":
-/*!****************************************!*\
-  !*** ./src/category-cover/editor.scss ***!
-  \****************************************/
+/***/ "./src/category-featured-image/editor.scss":
+/*!*************************************************!*\
+  !*** ./src/category-featured-image/editor.scss ***!
+  \*************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -150,10 +156,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/category-cover/style.scss":
-/*!***************************************!*\
-  !*** ./src/category-cover/style.scss ***!
-  \***************************************/
+/***/ "./src/category-featured-image/style.scss":
+/*!************************************************!*\
+  !*** ./src/category-featured-image/style.scss ***!
+  \************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -242,13 +248,13 @@ module.exports = window["wp"]["serverSideRender"];
 
 /***/ }),
 
-/***/ "./src/category-cover/block.json":
-/*!***************************************!*\
-  !*** ./src/category-cover/block.json ***!
-  \***************************************/
+/***/ "./src/category-featured-image/block.json":
+/*!************************************************!*\
+  !*** ./src/category-featured-image/block.json ***!
+  \************************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"dahlia-blocks/category-cover","title":"Category Cover","category":"text","icon":"clock","description":"Displays the cover for categories template","supports":{"html":false},"textdomain":"category-cover","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"apiVersion":3,"name":"dahlia-blocks/category-featured-image","title":"Category Featured Image","category":"media","icon":"format-image","description":"Displays the category\'s custom image.","supports":{"align":true,"anchor":true,"aspectRatio":true,"html":false,"layout":true,"color":{"background":true,"text":false,"gradients":true},"dimensions":{"minHeight":true,"width":true,"height":true},"border":{"radius":true,"width":true,"color":true},"shadow":true,"filters":true,"spacing":{"padding":true,"margin":true}},"attributes":{"aspectRatio":{"type":"string","default":"1"}},"textdomain":"category-featured-image","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ })
 
@@ -362,8 +368,8 @@ module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/tru
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
-/******/ 			"category-cover/index": 0,
-/******/ 			"category-cover/style-index": 0
+/******/ 			"category-featured-image/index": 0,
+/******/ 			"category-featured-image/style-index": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -413,7 +419,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/tru
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["category-cover/style-index"], () => (__webpack_require__("./src/category-cover/index.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["category-featured-image/style-index"], () => (__webpack_require__("./src/category-featured-image/index.js")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

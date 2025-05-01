@@ -30,6 +30,7 @@ function dahlia_blocks_dahlia_blocks_block_init() {
     register_block_type( __DIR__ . '/build/post-grid' );
     register_block_type( __DIR__ . '/build/category-grid' );
     register_block_type( __DIR__ . '/build/category-cover' );
+    register_block_type( __DIR__ . '/build/category-featured-image' );
 }
 add_action( 'init', 'dahlia_blocks_dahlia_blocks_block_init' );
 

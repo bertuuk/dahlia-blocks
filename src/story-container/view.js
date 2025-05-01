@@ -22,69 +22,81 @@
 
 /* eslint-disable no-console */
 document.addEventListener('DOMContentLoaded', () => {
-    const containers = document.querySelectorAll('.wp-block-dahlia-blocks-story-container');
+	const containers = document.querySelectorAll('.wp-block-dahlia-blocks-story-container');
 
-    containers.forEach((container) => {
-        let currentFontSizeIndex = 0;
-        const fontSizes = [20, 25, 30, 35]; // Tamaños de fuente
-        const initialFontSize = fontSizes[currentFontSizeIndex];
+	containers.forEach((container) => {
+		let currentFontSizeIndex = 0;
+		const fontSizes = [20, 25, 30, 35];
 
-        // Aplicar tamaño de fuente inicial
-        container.style.fontSize = `${initialFontSize}px`;
-        container.classList.add(`font-size-${currentFontSizeIndex}`);
+		// Aplicar mida de font inicial
+		container.style.fontSize = `${fontSizes[currentFontSizeIndex]}px`;
+		container.classList.add(`font-size-${currentFontSizeIndex}`);
 
-        // Crear botones de control
-        const controls = document.createElement('div');
-        controls.classList.add('story-container-controls');
+		// Crear contenidor principal
+		const controls = document.createElement('div');
+		controls.classList.add('story-container-controls', 'wp-block-buttons');
 
-        const increaseButton = document.createElement('button');
-        increaseButton.textContent = '+';
-        increaseButton.classList.add('increase-font', 'wp-block-button__link');
-        increaseButton.setAttribute('aria-label', 'Augmenta la mida del text');
-        increaseButton.setAttribute('title', 'Augmenta la mida del text');
+		// Crear i capturar referències als botons
+		function createWrappedButton({ text, className, ariaLabel, title }) {
+			const wrapper = document.createElement('div');
+			wrapper.classList.add('wp-block-button');
 
-        const decreaseButton = document.createElement('button');
-        decreaseButton.textContent = '-';
-        decreaseButton.classList.add('decrease-font', 'wp-block-button__link');
-        decreaseButton.setAttribute('aria-label', 'Redueix la mida del text');
-        decreaseButton.setAttribute('title', 'Redueix la mida del text');
+			const button = document.createElement('button');
+			button.classList.add(className, 'wp-block-button__link');
+			button.textContent = text;
+			button.setAttribute('aria-label', ariaLabel);
+			button.setAttribute('title', title);
 
-        const toggleFontButton = document.createElement('button');
-        toggleFontButton.textContent = 'Toggle Font';
-        toggleFontButton.classList.add('toggle-font', 'wp-block-button__link');
+			wrapper.appendChild(button);
+			controls.appendChild(wrapper);
 
-        toggleFontButton.setAttribute('aria-label', 'Canvia la tipografia');
-        toggleFontButton.setAttribute('title', 'Canvia la tipografia');
+			return button; // Retorna el botó per poder-hi afegir esdeveniments
+		}
 
-        // Añadir botones al contenedor de controles
-        controls.appendChild(increaseButton);
-        controls.appendChild(decreaseButton);
-        controls.appendChild(toggleFontButton);
-        container.insertBefore(controls, container.firstChild);
+		const increaseButton = createWrappedButton({
+			text: '+',
+			className: 'increase-font',
+			ariaLabel: 'Augmenta la mida del text',
+			title: 'Augmenta la mida del text'
+		});
 
-        // Eventos per aumentar/disminuir tamaño
-        increaseButton.addEventListener('click', () => {
-            if (currentFontSizeIndex < fontSizes.length - 1) {
-                // Esborra la classe anterior
-                container.classList.remove(`font-size-${currentFontSizeIndex}`);
-                currentFontSizeIndex++;
-                // Afegeix la nova classe
-                container.classList.add(`font-size-${currentFontSizeIndex}`);
-            }
-        });
+		const decreaseButton = createWrappedButton({
+			text: '-',
+			className: 'decrease-font',
+			ariaLabel: 'Redueix la mida del text',
+			title: 'Redueix la mida del text'
+		});
 
-        decreaseButton.addEventListener('click', () => {
-            if (currentFontSizeIndex > 0) {
-                container.classList.remove(`font-size-${currentFontSizeIndex}`);
-                currentFontSizeIndex--;
-                container.classList.add(`font-size-${currentFontSizeIndex}`);
-            }
-        });
+		const toggleFontButton = createWrappedButton({
+			text: 'a/A',
+			className: 'toggle-font',
+			ariaLabel: 'Canvia la tipografia',
+			title: 'Canvia la tipografia'
+		});
 
-        // Evento para alternar tipografía amb classes
-        toggleFontButton.addEventListener('click', () => {
-            container.classList.toggle('story-block-font');
-        });
-    });
+		// Afegim el contenidor de controls al principi
+		container.insertBefore(controls, container.firstChild);
+
+		// Esdeveniments
+		increaseButton.addEventListener('click', () => {
+			if (currentFontSizeIndex < fontSizes.length - 1) {
+				container.classList.remove(`font-size-${currentFontSizeIndex}`);
+				currentFontSizeIndex++;
+				container.classList.add(`font-size-${currentFontSizeIndex}`);
+			}
+		});
+
+		decreaseButton.addEventListener('click', () => {
+			if (currentFontSizeIndex > 0) {
+				container.classList.remove(`font-size-${currentFontSizeIndex}`);
+				currentFontSizeIndex--;
+				container.classList.add(`font-size-${currentFontSizeIndex}`);
+			}
+		});
+
+		toggleFontButton.addEventListener('click', () => {
+			container.classList.toggle('story-block-font');
+		});
+	});
 });
 /* eslint-enable no-console */

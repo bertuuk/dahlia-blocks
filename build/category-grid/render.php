@@ -34,6 +34,7 @@ $grid_items_mobile              = $attributes['gridItemsMobile'] ?? 2;
                 $term_name = $category->name;
                 $category_background = '';
                 $category_icon = '';
+                $bg_url = '';
 
                 if (metadata_exists('term', $term_id, $meta_image) && str_contains($attributes['className'], 'image')) {
                     $category_image = get_term_meta($term_id, $meta_image)[0];

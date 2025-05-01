@@ -116,6 +116,10 @@
     padding: 10px;
   }
 }
+.wp-block-dahlia-blocks-category-grid.is-style-category-grid-image-overlay.compact-card .category-card__container .card-icon__container {
+  width: 1.3rem;
+  height: 1.3rem;
+}
 .wp-block-dahlia-blocks-category-grid.is-style-category-grid-image-overlay.compact-card .category-card__container .card-icon__container .dahlia-icon {
   width: 1.3rem;
   height: 1.3rem;
@@ -286,6 +290,16 @@
   padding: 8px;
   background-color: var(--wp--preset--color--color-primary-06, #E01F1F);
   border-radius: 48px;
+}
+.wp-block-dahlia-blocks-category-grid.is-style-category-grid-soft-background.compact-card .category-card__container .card-icon__container {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+@media (min-width: 992px) {
+  .wp-block-dahlia-blocks-category-grid.is-style-category-grid-soft-background.compact-card .category-card__container .card-icon__container {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
 }
 .wp-block-dahlia-blocks-category-grid.is-style-category-grid-soft-background.compact-card .category-card__container .card-icon__container .dahlia-icon {
   background: var(--wp--preset--color--color-primary-01, #FFF0F0);
@@ -487,6 +501,16 @@
 @media (min-width: 992px) {
   .wp-block-dahlia-blocks-category-grid.is-style-category-grid-solid-background.compact-card .category-card__container .card-icon__outer {
     padding: 10px;
+  }
+}
+.wp-block-dahlia-blocks-category-grid.is-style-category-grid-solid-background.compact-card .category-card__container .card-icon__container {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+@media (min-width: 992px) {
+  .wp-block-dahlia-blocks-category-grid.is-style-category-grid-solid-background.compact-card .category-card__container .card-icon__container {
+    width: 1.5rem;
+    height: 1.5rem;
   }
 }
 .wp-block-dahlia-blocks-category-grid.is-style-category-grid-solid-background.compact-card .category-card__container .card-icon__container .dahlia-icon {

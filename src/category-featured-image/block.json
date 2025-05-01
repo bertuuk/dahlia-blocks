@@ -1,0 +1,48 @@
+{
+  "apiVersion": 3,
+  "name": "dahlia-blocks/category-featured-image",
+  "title": "Category Featured Image",
+  "category": "media",
+  "icon": "format-image",
+  "description": "Displays the category's custom image.",
+  "supports": {
+    "align": true,
+    "anchor": true,
+    "aspectRatio": true,
+    "html": false,
+    "layout": true,
+    "color": {
+      "background": true,
+      "text": false,
+      "gradients": true
+    },
+    "dimensions": {
+      "minHeight": true,
+      "width": true,
+      "height": true
+    },
+    "border": {
+      "radius": true,
+      "width": true,
+      "color": true
+    },
+    "shadow": true,
+    "filters": true,
+    "spacing": {
+      "padding": true,
+      "margin": true
+    }
+  },
+  "attributes": {
+    "aspectRatio": {
+      "type": "string",
+      "default": "1"
+    }
+  },
+  "textdomain": "category-featured-image",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
+}

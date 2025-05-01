@@ -40,3 +40,22 @@
         }
     }
 }
+
+.post-grid.row-items-lg-3{
+    .post-grid-item{
+        .card-style__wrapper.card-style__highlight{
+            .card-style__content {
+                .content-bottom{
+                    .content-title{
+                        font-size: 1.8rem;
+                        line-height: 2.5rem;
+                        @media(min-width:$screen-lg) {
+                            font-size: 2rem;
+                            line-height: 2.8rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
