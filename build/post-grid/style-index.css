@@ -187,7 +187,6 @@
   width: 100%;
 }
 .outer-container-carousel:after {
-  content: "";
   position: absolute;
   height: 100%;
   width: 12%;
@@ -197,7 +196,6 @@
   z-index: 1;
 }
 .outer-container-carousel:before {
-  content: "";
   position: absolute;
   height: 100%;
   width: 12%;
@@ -205,6 +203,14 @@
   right: 0;
   background: linear-gradient(-90deg, rgba(250, 250, 250, 0.74) 0%, rgba(250, 250, 250, 0) 100%);
   z-index: 1;
+}
+@media (min-width: 992px) {
+  .outer-container-carousel:after {
+    content: "";
+  }
+  .outer-container-carousel:before {
+    content: "";
+  }
 }
 .outer-container-carousel .tns-outer > .tns-ovh {
   overflow: visible;

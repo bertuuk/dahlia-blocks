@@ -9,7 +9,13 @@
 
 .wp-block-dahlia-blocks-category-grid {
     .category-grid {
-
+        &.has-blur{
+            &:before{
+                backdrop-filter: blur(4px);
+                
+            }
+            
+        }
         &__outer {
            
         }
@@ -66,9 +72,26 @@
 
         &__container {
             height:100%;
+            .card-icon {
+                &__outer {
+                   border-radius:50%;
+                    aspect-ratio: 1 / 1;
+                    flex-shrink: 0; // evitem deformació dins contenidors flexibles o grid
+
+                }
+
+                &__container {
+                    .dahlia-icon{
+                
+                        display: block;
+                    }
+                }
+            }
         }
 
 
     }
 
 }
+
+          

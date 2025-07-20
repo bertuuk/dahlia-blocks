@@ -98,6 +98,7 @@ function Edit({
     carouselSlideBy,
     carouselPeek,
     carouselAutoplay,
+    carouselLoop,
     carouselNav,
     postType,
     isFavorites,
@@ -370,6 +371,13 @@ function Edit({
             carouselNav: newCarouselNav
           }),
           __nextHasNoMarginBottom: true
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.ToggleControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Loop', 'dahlia-blocks'),
+          checked: carouselLoop,
+          onChange: newCarouselLoop => setAttributes({
+            carouselLoop: newCarouselLoop
+          }),
+          __nextHasNoMarginBottom: true
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_7__.PanelBody, {
         title: "Filter by Category",
@@ -618,7 +626,7 @@ module.exports = window["wp"]["serverSideRender"];
   \**********************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"version":"0.1.0","name":"dahlia-blocks/post-grid","title":"Post Grid","category":"widgets","icon":"grid-view","description":"Displays posts in a grid or carousel with multiple styles.","textdomain":"dahlia-blocks","attributes":{"postGridTitle":{"type":"string","default":""},"titleTag":{"type":"string","default":"h2"},"cardStyle":{"type":"string","default":"focus"},"layout":{"type":"string","default":"grid"},"buttonText":{"type":"string","default":"Go"},"selectedPosts":{"type":"array","default":[]},"tag":{"type":"string","default":""},"filterBy":{"type":"string","default":"date"},"postsPerPage":{"type":"number","default":6},"queryOffset":{"type":"number","default":0},"gridItemsDesktop":{"type":"number","default":4},"gridItemsMobile":{"type":"number","default":2},"carouselItemsLargeDesktop":{"type":"number","default":5},"carouselItemsDesktop":{"type":"number","default":4},"carouselItemsTablet":{"type":"number","default":2},"carouselItemsMobile":{"type":"number","default":1},"carouselSlideBy":{"type":"number","default":1},"carouselPeek":{"type":"boolean","default":false},"carouselAutoplay":{"type":"boolean","default":false},"carouselNav":{"type":"boolean","default":false},"categories":{"type":"array","items":{"type":"number"},"default":[]},"postType":{"type":"string","default":"post"},"postsIn":{"type":"array","default":[]},"isFavorites":{"type":"boolean","default":false},"singleRelatedPost":{"type":"boolean","default":false},"excludeQueryPosts":{"type":"boolean","default":false}},"supports":{"align":true,"alignWide":true},"editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"version":"0.1.0","name":"dahlia-blocks/post-grid","title":"Post Grid","category":"widgets","icon":"grid-view","description":"Displays posts in a grid or carousel with multiple styles.","textdomain":"dahlia-blocks","attributes":{"postGridTitle":{"type":"string","default":""},"titleTag":{"type":"string","default":"h2"},"cardStyle":{"type":"string","default":"focus"},"layout":{"type":"string","default":"grid"},"buttonText":{"type":"string","default":"Go"},"selectedPosts":{"type":"array","default":[]},"tag":{"type":"string","default":""},"filterBy":{"type":"string","default":"date"},"postsPerPage":{"type":"number","default":6},"queryOffset":{"type":"number","default":0},"gridItemsDesktop":{"type":"number","default":4},"gridItemsMobile":{"type":"number","default":2},"carouselItemsLargeDesktop":{"type":"number","default":5},"carouselItemsDesktop":{"type":"number","default":4},"carouselItemsTablet":{"type":"number","default":2},"carouselItemsMobile":{"type":"number","default":1},"carouselSlideBy":{"type":"number","default":1},"carouselPeek":{"type":"boolean","default":false},"carouselAutoplay":{"type":"boolean","default":false},"carouselLoop":{"type":"boolean","default":false},"carouselNav":{"type":"boolean","default":false},"categories":{"type":"array","items":{"type":"number"},"default":[]},"postType":{"type":"string","default":"post"},"postsIn":{"type":"array","default":[]},"isFavorites":{"type":"boolean","default":false},"singleRelatedPost":{"type":"boolean","default":false},"excludeQueryPosts":{"type":"boolean","default":false}},"supports":{"align":true,"alignWide":true},"editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ })
 

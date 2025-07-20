@@ -64,7 +64,7 @@
 	width: 100%;
 
 	&:after {
-		content: '';
+		
 		position: absolute;
 		height: 100%;
 		width: 12%;
@@ -75,7 +75,7 @@
 	}
 
 	&:before {
-		content: '';
+	
 		position: absolute;
 		height: 100%;
 		width: 12%;
@@ -83,6 +83,16 @@
 		right: 0;
 		background: linear-gradient(-90deg, rgba(250, 250, 250, 0.74) 0%, rgba(250, 250, 250, 0) 100%);
 		z-index: 1;
+	}
+
+	@media(min-width: $screen-lg) {
+		&:after {
+			content: '';
+		}
+
+		&:before {
+			content: '';
+		}
 	}
 
 	.tns-outer {

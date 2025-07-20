@@ -65,6 +65,7 @@ export default function Edit({ attributes, setAttributes }) {
 		carouselSlideBy,
 		carouselPeek,
 		carouselAutoplay,
+		carouselLoop,
 		carouselNav,
 		postType,
 		isFavorites,
@@ -311,6 +312,13 @@ export default function Edit({ attributes, setAttributes }) {
 							onChange={(newCarouselNav) => setAttributes({ carouselNav: newCarouselNav })}
 							__nextHasNoMarginBottom={true}
 						/>
+						<ToggleControl
+							label={__('Loop', 'dahlia-blocks')}
+							checked={carouselLoop}
+							onChange={(newCarouselLoop) => setAttributes({ carouselLoop: newCarouselLoop })}
+							__nextHasNoMarginBottom={true}
+						/>
+						
 					</PanelBody>
 
 				)}

@@ -27,6 +27,7 @@ $carousel_items_mobile  		= $attributes['carouselItemsMobile'] ?? 1;
 $carousel_slide_by      		= $attributes['carouselSlideBy'] ?? 1;
 $carousel_peek          		= $attributes['carouselPeek'] ?? false;
 $carousel_autoplay      		= $attributes['carouselAutoplay'] ?? false;
+$carousel_loop      			= $attributes['carouselLoop'] ?? false;
 $carousel_nav           		= $attributes['carouselNav'] ?? true;
 $post_type           			= $attributes['postType'] ?? 'post';
 $posts_in            			= $attributes['postsIn'] ?? '';
@@ -179,14 +180,15 @@ if ($query->have_posts()) :
 						<?php endif; ?>
 					</div>
 					<div class="tns-controls">
-						<button class="tns-prev"><span class="dahlia-icon di-small dahlia-fi-rr-angle-small-left"></span></button>
-						<button class="tns-next"><span class="dahlia-icon di-small dahlia-fi-rr-angle-small-right"></span></button>
+						<button class="tns-prev" aria-label="<?php echo esc_attr__('Previous slide','dahlia-blocks') . " " . $post_grid_title ?>"><span class="dahlia-icon di-small dahlia-fi-rr-angle-small-left" aria-hidden="true"></span></button>
+						<button class="tns-next" aria-label="<?php echo esc_attr__('Next slide','dahlia-blocks') . " " . $post_grid_title ?> "><span class="dahlia-icon di-small dahlia-fi-rr-angle-small-right" aria-hidden="true"></span></button>
 					</div>
 				</div>
 			<?php endif; ?>
 			<div
 				class="post-grid <?php echo ('carousel' === $layout) ? 'post-grid-carousel' : 'post-grid-grid row-items-lg-' . $grid_items_desktop . ' row-items-sm-' . $grid_items_mobile; ?>"
 				<?php if ('carousel' === $layout) : ?>
+				role="region" aria-roledescription="carousel" aria-label="<?php echo esc_attr__( 'Carousel', 'dahlia-blocks' ) . $post_grid_title; ?>"
 				data-items-large-desktop="<?php echo esc_attr($carousel_items_large_desktop); ?>"
 				data-items-desktop="<?php echo esc_attr($carousel_items_desktop); ?>"
 				data-items-tablet="<?php echo esc_attr($carousel_items_tablet); ?>"
@@ -194,6 +196,7 @@ if ($query->have_posts()) :
 				data-slide-by="<?php echo esc_attr($carousel_slide_by); ?>"
 				data-peek="<?php echo esc_attr($carousel_peek ? 'true' : 'false'); ?>"
 				data-autoplay="<?php echo esc_attr($carousel_autoplay ? 'true' : 'false'); ?>"
+				data-loop="<?php echo esc_attr($carousel_loop ? 'true' : 'false'); ?>"
 				data-nav="<?php echo esc_attr($carousel_nav ? 'true' : 'false'); ?>"
 				<?php endif; ?>>
 				<?php

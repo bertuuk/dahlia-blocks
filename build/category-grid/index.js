@@ -78,6 +78,7 @@ function Edit({
   const {
     cardSize,
     styleCompact,
+    backgroundImageBlur,
     categories,
     gridItemsLargeDesktop,
     gridItemsDesktop,
@@ -143,6 +144,13 @@ function Edit({
           checked: styleCompact,
           onChange: newStyleCompact => setAttributes({
             styleCompact: newStyleCompact
+          }),
+          __nextHasNoMarginBottom: true
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToggleControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Blur', 'dahlia-blocks'),
+          checked: backgroundImageBlur,
+          onChange: newBackgroundImageBlur => setAttributes({
+            backgroundImageBlur: newBackgroundImageBlur
           }),
           __nextHasNoMarginBottom: true
         })]
@@ -376,7 +384,7 @@ module.exports = window["wp"]["serverSideRender"];
   \**************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"dahlia-blocks/category-grid","title":"Category Grid","category":"text","icon":"category","description":"Displays the estimated reading time of the post.","supports":{"html":false,"align":true,"alignWide":true},"textdomain":"category-grid","attributes":{"cardSize":{"type":"string","default":"small"},"styleCompact":{"type":"boolean","default":false},"categories":{"type":"array","items":{"type":"number"},"default":[]},"gridItemsLargeDesktop":{"type":"number","default":5},"gridItemsDesktop":{"type":"number","default":4},"gridItemsLargeTablet":{"type":"number","default":3},"gridItemsTablet":{"type":"number","default":3},"gridItemsMobile":{"type":"number","default":2}},"editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js","styles":[{"name":"category-grid-image-overlay","label":"Image Overlay","isDefault":true},{"name":"category-grid-soft-background","label":"Soft Background"},{"name":"category-grid-solid-background","label":"Solid Background"},{"name":"category-grid-compact-card","label":"Compact card"}]}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"dahlia-blocks/category-grid","title":"Category Grid","category":"text","icon":"category","description":"Displays the estimated reading time of the post.","supports":{"html":false,"align":true,"alignWide":true},"textdomain":"category-grid","attributes":{"cardSize":{"type":"string","default":"small"},"styleCompact":{"type":"boolean","default":false},"backgroundImageBlur":{"type":"boolean","default":false},"categories":{"type":"array","items":{"type":"number"},"default":[]},"gridItemsLargeDesktop":{"type":"number","default":5},"gridItemsDesktop":{"type":"number","default":4},"gridItemsLargeTablet":{"type":"number","default":3},"gridItemsTablet":{"type":"number","default":3},"gridItemsMobile":{"type":"number","default":2}},"editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js","styles":[{"name":"category-grid-image-overlay","label":"Image Overlay","isDefault":true},{"name":"category-grid-soft-background","label":"Soft Background"},{"name":"category-grid-solid-background","label":"Solid Background"}]}');
 
 /***/ })
 

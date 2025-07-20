@@ -47,6 +47,7 @@ export default function Edit({ attributes, setAttributes }) {
 	const {
 		cardSize,
 		styleCompact,
+		backgroundImageBlur,
 		categories,
 		gridItemsLargeDesktop,
 		gridItemsDesktop,
@@ -105,6 +106,12 @@ export default function Edit({ attributes, setAttributes }) {
 						label={__('Compact', 'dahlia-blocks')}
 						checked={styleCompact}
 						onChange={(newStyleCompact) => setAttributes({ styleCompact: newStyleCompact })}
+						__nextHasNoMarginBottom={true}
+					/>
+					<ToggleControl
+						label={__('Blur', 'dahlia-blocks')}
+						checked={backgroundImageBlur}
+						onChange={(newBackgroundImageBlur) => setAttributes({ backgroundImageBlur: newBackgroundImageBlur })}
 						__nextHasNoMarginBottom={true}
 					/>
 				</PanelBody>
