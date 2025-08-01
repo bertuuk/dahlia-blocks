@@ -28,34 +28,34 @@
             grid-auto-rows: 1fr;
             @media(min-width: $screen-sm) {
 
-                gap: var(--grid-gap-md, 1.2rem);
+                gap: var(--grid-gap-md, 30px);
                 grid-template-columns: repeat(var(--grid-columns-tablet), 1fr);
 
             }
 
             @media(min-width: $screen-md) {
 
-                gap: var(--grid-gap-md, 1.2rem);
+                gap: var(--grid-gap-md, 30px);
                 grid-template-columns: repeat(var(--grid-columns-large-tablet), 1fr);
 
             }
             @media(min-width: $screen-lg) {
 
-                gap: var(--grid-gap-md, 1.2rem);
+                gap: var(--grid-gap-md, 30px);
                 grid-template-columns: repeat(var(--grid-columns-large-tablet), 1fr);
 
             }
 
             @media(min-width: $screen-xl) {
 
-                gap: var(--grid-gap-lg, 1.2rem);
+                gap: var(--grid-gap-lg, 30px);
                 grid-template-columns: repeat(var(--grid-columns-desktop), 1fr);
 
             }
 
             @media(min-width: $screen-xxl) {
 
-                gap: var(--grid-gap-xl, 1.2rem);
+                gap: var(--grid-gap-xl, 30px);
                 grid-template-columns: repeat(var(--grid-columns-large), 1fr);
 
             }

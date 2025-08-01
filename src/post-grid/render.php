@@ -99,6 +99,8 @@ if ( ! empty( $attributes['isFavorites'] ) ) {
     if (!empty($related_post_ids)) {
         $args['post__in'] = $related_post_ids;
         $args['orderby'] = 'post__in'; // Mantener el orden específico de coincidencias
+		$args['offset'] =  $query_offset;
+		$args['posts_per_page'] =  $posts_per_page;
     }
 }elseif ( is_archive() ) {
     $args = [

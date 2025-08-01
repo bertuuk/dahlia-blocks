@@ -591,31 +591,31 @@
 }
 @media (min-width: 576px) {
   .wp-block-dahlia-blocks-category-grid .category-grid__container {
-    gap: var(--grid-gap-md, 1.2rem);
+    gap: var(--grid-gap-md, 30px);
     grid-template-columns: repeat(var(--grid-columns-tablet), 1fr);
   }
 }
 @media (min-width: 768px) {
   .wp-block-dahlia-blocks-category-grid .category-grid__container {
-    gap: var(--grid-gap-md, 1.2rem);
+    gap: var(--grid-gap-md, 30px);
     grid-template-columns: repeat(var(--grid-columns-large-tablet), 1fr);
   }
 }
 @media (min-width: 992px) {
   .wp-block-dahlia-blocks-category-grid .category-grid__container {
-    gap: var(--grid-gap-md, 1.2rem);
+    gap: var(--grid-gap-md, 30px);
     grid-template-columns: repeat(var(--grid-columns-large-tablet), 1fr);
   }
 }
 @media (min-width: 1200px) {
   .wp-block-dahlia-blocks-category-grid .category-grid__container {
-    gap: var(--grid-gap-lg, 1.2rem);
+    gap: var(--grid-gap-lg, 30px);
     grid-template-columns: repeat(var(--grid-columns-desktop), 1fr);
   }
 }
 @media (min-width: 1400px) {
   .wp-block-dahlia-blocks-category-grid .category-grid__container {
-    gap: var(--grid-gap-xl, 1.2rem);
+    gap: var(--grid-gap-xl, 30px);
     grid-template-columns: repeat(var(--grid-columns-large), 1fr);
   }
 }

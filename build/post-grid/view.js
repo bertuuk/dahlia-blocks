@@ -41,7 +41,7 @@ function initializeCarousels() {
       nav: nav,
       autoplayButtonOutput: false,
       loop: loop,
-      gutter: 36,
+      gutter: 30,
       preventScrollOnTouch: true,
       responsive: {
         1750: {
@@ -61,7 +61,8 @@ function initializeCarousels() {
         },
         576: {
           items: itemsMobile,
-          gutter: 36
+          gutter: 30,
+          slideBy: 1
         },
         0: {
           items: itemsMobile,

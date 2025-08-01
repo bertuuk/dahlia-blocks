@@ -6,22 +6,22 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
-.wp-block-dahlia-blocks-post-grid {
+.wp-block-dahlia-blocks-post-grid.wrapper-carousel {
   pointer-events: none;
 }
-.wp-block-dahlia-blocks-post-grid .post-grid {
+.wp-block-dahlia-blocks-post-grid.wrapper-carousel .post-grid {
   display: flex;
   flex-wrap: wrap;
 }
-.wp-block-dahlia-blocks-post-grid .post-grid .post-grid-item--outter {
+.wp-block-dahlia-blocks-post-grid.wrapper-carousel .post-grid .post-grid-item--outter {
   width: 25%;
 }
-.wp-block-dahlia-blocks-post-grid .post-grid .post-grid-item--outter:nth-child(n+9) {
+.wp-block-dahlia-blocks-post-grid.wrapper-carousel .post-grid .post-grid-item--outter:nth-child(n+9) {
   display: none;
 }
-.wp-block-dahlia-blocks-post-grid .post-grid .post-grid-item--outter .card-style__content {
+.wp-block-dahlia-blocks-post-grid.wrapper-carousel .post-grid .post-grid-item--outter .card-style__content {
   position: relative;
 }
-.wp-block-dahlia-blocks-post-grid .post-grid.post-grid-carousel .post-grid-item--outter:nth-child(n+5) {
+.wp-block-dahlia-blocks-post-grid.wrapper-carousel .post-grid.post-grid-carousel .post-grid-item--outter:nth-child(n+5) {
   display: none;
 }
