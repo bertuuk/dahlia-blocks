@@ -31,13 +31,17 @@
                 right:0;
                 background-color: rgba(0, 0, 0, 0.45);
             }
+            &.has-blur{
+                &:before{
+                    backdrop-filter: blur(3px);
+                }
+            }
             
 
 
             .card-icon {
                 &__outer {
                     background-color:$primary-01;
-                    border-radius:48px;
                     padding:10px;
                     z-index:10;
 
@@ -48,6 +52,7 @@
                         background-color: $primary-06;
                         width: 1.5rem;
                         height: 1.5rem;
+                        display: block;
                     }
                 }
             }

@@ -36,7 +36,12 @@
                 }
 
                 &__container {
-                   
+                    width: 1.3rem;
+                    height: 1.3rem;
+                    @media(min-width:$screen-lg) {
+                        width: 1.5rem;
+                        height: 1.5rem;
+                    }
                     .dahlia-icon {
                         width: 1.3rem;
                         height: 1.3rem;

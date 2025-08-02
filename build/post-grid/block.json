@@ -85,6 +85,10 @@
       "type": "boolean",
       "default": false
     },
+    "carouselLoop": {
+      "type": "boolean",
+      "default": false
+    },
     "carouselNav": {
       "type": "boolean",
       "default": false

@@ -29,9 +29,12 @@
   right: 0;
   background-color: rgba(0, 0, 0, 0.45);
 }
+.wp-block-dahlia-blocks-category-grid.is-style-category-grid-image-overlay .category-card__container.has-blur:before {
+  -webkit-backdrop-filter: blur(3px);
+          backdrop-filter: blur(3px);
+}
 .wp-block-dahlia-blocks-category-grid.is-style-category-grid-image-overlay .category-card__container .card-icon__outer {
   background-color: var(--wp--preset--color--color-primary-01, #FFF0F0);
-  border-radius: 48px;
   padding: 10px;
   z-index: 10;
 }
@@ -39,6 +42,7 @@
   background-color: var(--wp--preset--color--color-primary-06, #E01F1F);
   width: 1.5rem;
   height: 1.5rem;
+  display: block;
 }
 .wp-block-dahlia-blocks-category-grid.is-style-category-grid-image-overlay .category-card__content {
   z-index: 10;
@@ -287,6 +291,16 @@
   background-color: var(--wp--preset--color--color-primary-06, #E01F1F);
   border-radius: 48px;
 }
+.wp-block-dahlia-blocks-category-grid.is-style-category-grid-soft-background.compact-card .category-card__container .card-icon__container {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+@media (min-width: 992px) {
+  .wp-block-dahlia-blocks-category-grid.is-style-category-grid-soft-background.compact-card .category-card__container .card-icon__container {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
 .wp-block-dahlia-blocks-category-grid.is-style-category-grid-soft-background.compact-card .category-card__container .card-icon__container .dahlia-icon {
   background: var(--wp--preset--color--color-primary-01, #FFF0F0);
   width: 1.3rem;
@@ -489,6 +503,16 @@
     padding: 10px;
   }
 }
+.wp-block-dahlia-blocks-category-grid.is-style-category-grid-solid-background.compact-card .category-card__container .card-icon__container {
+  width: 1.3rem;
+  height: 1.3rem;
+}
+@media (min-width: 992px) {
+  .wp-block-dahlia-blocks-category-grid.is-style-category-grid-solid-background.compact-card .category-card__container .card-icon__container {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
 .wp-block-dahlia-blocks-category-grid.is-style-category-grid-solid-background.compact-card .category-card__container .card-icon__container .dahlia-icon {
   width: 1.3rem;
   height: 1.3rem;
@@ -555,6 +579,10 @@
   font-size: 1.875rem;
 }
 
+.wp-block-dahlia-blocks-category-grid .category-grid.has-blur:before {
+  -webkit-backdrop-filter: blur(4px);
+          backdrop-filter: blur(4px);
+}
 .wp-block-dahlia-blocks-category-grid .category-grid__container {
   display: grid;
   gap: var(--grid-gap-sm, 1rem);
@@ -563,31 +591,31 @@
 }
 @media (min-width: 576px) {
   .wp-block-dahlia-blocks-category-grid .category-grid__container {
-    gap: var(--grid-gap-md, 1.2rem);
+    gap: var(--grid-gap-md, 30px);
     grid-template-columns: repeat(var(--grid-columns-tablet), 1fr);
   }
 }
 @media (min-width: 768px) {
   .wp-block-dahlia-blocks-category-grid .category-grid__container {
-    gap: var(--grid-gap-md, 1.2rem);
+    gap: var(--grid-gap-md, 30px);
     grid-template-columns: repeat(var(--grid-columns-large-tablet), 1fr);
   }
 }
 @media (min-width: 992px) {
   .wp-block-dahlia-blocks-category-grid .category-grid__container {
-    gap: var(--grid-gap-md, 1.2rem);
+    gap: var(--grid-gap-md, 30px);
     grid-template-columns: repeat(var(--grid-columns-large-tablet), 1fr);
   }
 }
 @media (min-width: 1200px) {
   .wp-block-dahlia-blocks-category-grid .category-grid__container {
-    gap: var(--grid-gap-lg, 1.2rem);
+    gap: var(--grid-gap-lg, 30px);
     grid-template-columns: repeat(var(--grid-columns-desktop), 1fr);
   }
 }
 @media (min-width: 1400px) {
   .wp-block-dahlia-blocks-category-grid .category-grid__container {
-    gap: var(--grid-gap-xl, 1.2rem);
+    gap: var(--grid-gap-xl, 30px);
     grid-template-columns: repeat(var(--grid-columns-large), 1fr);
   }
 }
@@ -596,6 +624,14 @@
 }
 .wp-block-dahlia-blocks-category-grid .category-card__container {
   height: 100%;
+}
+.wp-block-dahlia-blocks-category-grid .category-card__container .card-icon__outer {
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  flex-shrink: 0;
+}
+.wp-block-dahlia-blocks-category-grid .category-card__container .card-icon__container .dahlia-icon {
+  display: block;
 }
 
 /*# sourceMappingURL=style-index.css.map*/

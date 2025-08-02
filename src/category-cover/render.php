@@ -11,16 +11,18 @@ if (is_archive()) {
     $term_name = $term->name;
     $term_description = $term->description;
     $term_number = $term->count;
+    $bg_url = '';
+        $category_background = '';
     if (is_category() && metadata_exists('term', $term_id, 'dahlia_category_image')) {
         $category_image = get_term_meta($term_id, 'dahlia_category_image')[0];
         if (!empty($category_image)) {
             $category_background = 'background-image:url("' . wp_get_attachment_image_url($category_image) . '")';
             $bg_url = wp_get_attachment_image_url($category_image, 'full');
         }
-    } else {
     }
 }
 ?>
+<?php if (!empty($bg_url)) : ?>
 <div <?php echo get_block_wrapper_attributes(); ?>>
     <div class="archive-cover__outer lazyload" style=<?php echo $category_background ?> data-bgset="<?php echo esc_url($bg_url); ?>">
         <div class="archive-cover__container">
@@ -33,3 +35,4 @@ if (is_archive()) {
         </div>
     </div>
 </div>
+<?php endif; ?>

@@ -29,15 +29,13 @@
     margin-top: 1rem;
     display: flex;
     gap: 0.5rem;
+    justify-content: flex-end;
 }
 
-.story-container-controls button {
-    padding: 0.5rem 1rem;
-    border: 1px solid #ccc;
-    background-color: #eee;
-    cursor: pointer;
-    border-radius: 4px;
-    font-size: 14px;
+.story-container-controls {
+    font-family: var(--wp--preset--font-family--secondary-font) !important;
+    line-height:normal;
+
 }
 
 .story-container-controls button:hover {

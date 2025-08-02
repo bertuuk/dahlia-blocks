@@ -21,6 +21,10 @@
       "type": "boolean",
       "default": false
     },
+    "backgroundImageBlur": {
+      "type": "boolean",
+      "default": false
+    },
     "categories": {
       "type": "array",
       "items": {
@@ -67,10 +71,6 @@
     {
       "name": "category-grid-solid-background",
       "label": "Solid Background"
-    },
-    {
-      "name": "category-grid-compact-card",
-      "label": "Compact card"
     }
   ]
 }

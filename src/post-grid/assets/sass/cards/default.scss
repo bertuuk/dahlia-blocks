@@ -86,3 +86,21 @@
 .linkify{
 	cursor: pointer;
 }
+
+.wrapper-carousel {
+	.post-grid-item{
+		.card-style__wrapper {
+			min-height: 350px;
+			@media(min-width:$screen-lg) {
+				min-height: 382px;
+			}
+			.card-style__content {
+				.content-title {
+					@media(max-width:$screen-lg) {
+						font-size: 1.55rem;
+					}
+				}
+			}
+		}
+	}
+}
