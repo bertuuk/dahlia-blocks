@@ -623,6 +623,7 @@
   height: 100%;
 }
 .wp-block-dahlia-blocks-category-grid .category-card__container {
+  transition: transform 0.3s ease;
   height: 100%;
 }
 .wp-block-dahlia-blocks-category-grid .category-card__container .card-icon__outer {
@@ -632,4 +633,7 @@
 }
 .wp-block-dahlia-blocks-category-grid .category-card__container .card-icon__container .dahlia-icon {
   display: block;
+}
+.wp-block-dahlia-blocks-category-grid .category-card__container:hover {
+  transform: scale(1.05);
 }

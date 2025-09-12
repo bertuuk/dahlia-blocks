@@ -8,6 +8,8 @@
 @use './assets/sass/cards';
 
 .wp-block-dahlia-blocks-post-grid {
+	
+
 	.post-grid-carousel-header {
 		display: flex;
 		flex-direction: row;
@@ -64,6 +66,17 @@
 	position: relative;
 	overflow: hidden;
 	width: 100%;
+	.post-grid-item {
+		.content-title {
+			transition: transform .3s ease;
+		}
+		&:hover {
+			.content-title {
+				transition: transform .3s ease;
+				transform: translateY(-10px);
+			}
+		}
+	}
 
 	&:after {
 
@@ -115,6 +128,14 @@
 	--grid-gap-sm: 15px;
 	display: grid;
 	gap: var(--grid-gap-sm);
+
+	.post-grid-item {
+		transition: transform .3s ease;
+
+		&:hover {
+			transform: scale(1.05);
+		}
+	}
 
 	@media(min-width:$screen-xl) {
 		padding: 0;
