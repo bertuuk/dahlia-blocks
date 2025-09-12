@@ -202,6 +202,13 @@
   overflow: hidden;
   width: 100%;
 }
+.outer-container-carousel .post-grid-item .content-title {
+  transition: transform 0.3s ease;
+}
+.outer-container-carousel .post-grid-item:hover .content-title {
+  transition: transform 0.3s ease;
+  transform: translateY(-10px);
+}
 .outer-container-carousel:after {
   position: absolute;
   height: 100%;
@@ -243,6 +250,12 @@
   --grid-gap-sm: 15px;
   display: grid;
   gap: var(--grid-gap-sm);
+}
+.post-grid.post-grid-grid .post-grid-item {
+  transition: transform 0.3s ease;
+}
+.post-grid.post-grid-grid .post-grid-item:hover {
+  transform: scale(1.05);
 }
 @media (min-width: 1200px) {
   .post-grid.post-grid-grid {

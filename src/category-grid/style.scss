@@ -21,7 +21,7 @@
         }
 
         &__container {
-     
+        
             display: grid;
             gap: var(--grid-gap-sm, 1rem);
             grid-template-columns: repeat(var(--grid-columns-mobile), 1fr);
@@ -71,6 +71,8 @@
         }
 
         &__container {
+
+            transition:transform .3s ease;
             height:100%;
             .card-icon {
                 &__outer {
@@ -86,6 +88,9 @@
                         display: block;
                     }
                 }
+            }
+            &:hover{
+                transform: scale(1.05);
             }
         }
 
