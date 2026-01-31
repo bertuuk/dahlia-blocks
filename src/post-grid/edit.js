@@ -32,7 +32,7 @@ import './editor.scss';
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-components/
  */
 
-import { PanelBody, SelectControl, CheckboxControl, RangeControl, ToggleControl, TextControl, FormTokenField } from '@wordpress/components';
+import { PanelBody, SelectControl, CheckboxControl, RangeControl, ToggleControl, TextControl, FormTokenField, Notice, Spinner } from '@wordpress/components';
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -72,6 +72,7 @@ export default function Edit({ attributes, setAttributes }) {
 		singleRelatedPost,
 		excludeQueryPosts,
 		postsIn,
+		storyValues,
 	} = attributes;
 
 	const blockProps = useBlockProps();
@@ -138,6 +139,38 @@ export default function Edit({ attributes, setAttributes }) {
 		})
 		: [];
 
+	const [storyValueSuggestions, setStoryValueSuggestions] = useState([]);
+	const [storyValuesLoading, setStoryValuesLoading] = useState(true);
+	const [storyValuesError, setStoryValuesError] = useState('');
+
+	useEffect(() => {
+		let isMounted = true;
+
+		apiFetch({ path: '/contes-subscription/v1/story-values' })
+			.then((values) => {
+				if (!isMounted) {
+					return;
+				}
+				setStoryValueSuggestions(Array.isArray(values) ? values : []);
+				setStoryValuesLoading(false);
+			})
+			.catch(() => {
+				if (!isMounted) {
+					return;
+				}
+				setStoryValuesError(__('No s\'han pogut carregar els valors.', 'dahlia-blocks'));
+				setStoryValuesLoading(false);
+			});
+
+		return () => {
+			isMounted = false;
+		};
+	}, []);
+
+	const handleStoryValuesChange = (nextValues) => {
+		setAttributes({ storyValues: nextValues });
+	};
+
 
 	return (
 		<>
@@ -186,6 +219,7 @@ export default function Edit({ attributes, setAttributes }) {
 						options={[
 
 							{ label: __('Latest Posts', 'dahlia-blocks'), value: 'latest' },
+							{ label: __('Manual (Post in order)', 'dahlia-blocks'), value: 'post__in' },
 							{ label: __('Most Popular This Month', 'dahlia-blocks'), value: 'popular_month' },
 							{ label: __('Most Popular Always', 'dahlia-blocks'), value: 'popular_always' },
 							{ label: __('Reading time', 'dahlia-blocks'), value: 'reading_time' },
@@ -362,6 +396,20 @@ export default function Edit({ attributes, setAttributes }) {
 						suggestions={postSuggestions} // Mostrar sugerencias basadas en los títulos de los posts
 						value={selectedPosts} // Títulos seleccionados
 						onChange={handlePostSelection} // Actualizar valores al cambiar
+					/>
+					{storyValuesError ? (
+						<Notice status="warning" isDismissible={false}>
+							{storyValuesError}
+						</Notice>
+					) : null}
+					{storyValuesLoading ? <Spinner /> : null}
+					<FormTokenField
+						__next40pxDefaultSize
+						__nextHasNoMarginBottom
+						label={__('Valors', 'dahlia-blocks')}
+						suggestions={storyValueSuggestions}
+						value={Array.isArray(storyValues) ? storyValues : []}
+						onChange={handleStoryValuesChange}
 					/>
 				</PanelBody>
 
