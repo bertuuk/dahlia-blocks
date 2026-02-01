@@ -172,17 +172,15 @@ if ($exclude_query_posts === true) {
 	$args['post__not_in'] = $dahlia_rendered_posts;
 }
 
-$story_values = is_array($story_values) ? array_filter(array_map('sanitize_text_field', $story_values)) : [];
+$story_values = is_array($story_values) ? array_filter(array_map('intval', $story_values)) : [];
 if (!empty($story_values)) {
-	$story_meta_query = ['relation' => 'OR'];
-	foreach ($story_values as $story_value) {
-		$story_meta_query[] = [
-			'key' => 'contes_story_values',
-			'value' => '"' . $story_value . '"',
-			'compare' => 'LIKE',
-		];
-	}
-	$args['meta_query'] = $story_meta_query;
+	$args['tax_query'] = [
+		[
+			'taxonomy' => 'story_value',
+			'field' => 'term_id',
+			'terms' => $story_values,
+		],
+	];
 }
 
 
