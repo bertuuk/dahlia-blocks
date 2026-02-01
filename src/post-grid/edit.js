@@ -4,9 +4,7 @@
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
  */
 import { __ } from '@wordpress/i18n';
-import { useState, useEffect } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
-import apiFetch from '@wordpress/api-fetch';
 
 /**
  * React hook that is used to mark the block wrapper element.
@@ -32,7 +30,7 @@ import './editor.scss';
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-components/
  */
 
-import { PanelBody, SelectControl, CheckboxControl, RangeControl, ToggleControl, TextControl, FormTokenField, Notice, Spinner } from '@wordpress/components';
+import { PanelBody, SelectControl, CheckboxControl, RangeControl, ToggleControl, TextControl, FormTokenField } from '@wordpress/components';
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -139,36 +137,31 @@ export default function Edit({ attributes, setAttributes }) {
 		})
 		: [];
 
-	const [storyValueSuggestions, setStoryValueSuggestions] = useState([]);
-	const [storyValuesLoading, setStoryValuesLoading] = useState(true);
-	const [storyValuesError, setStoryValuesError] = useState('');
-
-	useEffect(() => {
-		let isMounted = true;
-
-		apiFetch({ path: '/contes-subscription/v1/story-values' })
-			.then((values) => {
-				if (!isMounted) {
-					return;
-				}
-				setStoryValueSuggestions(Array.isArray(values) ? values : []);
-				setStoryValuesLoading(false);
+	const storyValueTerms = useSelect(
+		(select) => select('core').getEntityRecords('taxonomy', 'story_value', { per_page: -1 }),
+		[]
+	);
+	const storyValueSuggestions = storyValueTerms ? storyValueTerms.map((term) => term.name) : [];
+	const selectedStoryValues = Array.isArray(storyValues) && storyValueTerms
+		? storyValues
+			.map((termId) => {
+				const match = storyValueTerms.find((term) => term.id === termId);
+				return match ? match.name : '';
 			})
-			.catch(() => {
-				if (!isMounted) {
-					return;
-				}
-				setStoryValuesError(__('No s\'han pogut carregar els valors.', 'dahlia-blocks'));
-				setStoryValuesLoading(false);
-			});
+			.filter((name) => name !== '')
+		: [];
 
-		return () => {
-			isMounted = false;
-		};
-	}, []);
-
-	const handleStoryValuesChange = (nextValues) => {
-		setAttributes({ storyValues: nextValues });
+	const handleStoryValuesChange = (selectedNames) => {
+		if (!storyValueTerms) {
+			return;
+		}
+		const nextIds = selectedNames
+			.map((name) => {
+				const match = storyValueTerms.find((term) => term.name === name);
+				return match ? match.id : null;
+			})
+			.filter((id) => id !== null);
+		setAttributes({ storyValues: nextIds });
 	};
 
 
@@ -397,18 +390,12 @@ export default function Edit({ attributes, setAttributes }) {
 						value={selectedPosts} // Títulos seleccionados
 						onChange={handlePostSelection} // Actualizar valores al cambiar
 					/>
-					{storyValuesError ? (
-						<Notice status="warning" isDismissible={false}>
-							{storyValuesError}
-						</Notice>
-					) : null}
-					{storyValuesLoading ? <Spinner /> : null}
 					<FormTokenField
 						__next40pxDefaultSize
 						__nextHasNoMarginBottom
 						label={__('Valors', 'dahlia-blocks')}
 						suggestions={storyValueSuggestions}
-						value={Array.isArray(storyValues) ? storyValues : []}
+						value={selectedStoryValues}
 						onChange={handleStoryValuesChange}
 					/>
 				</PanelBody>
