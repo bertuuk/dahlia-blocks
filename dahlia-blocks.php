@@ -4,7 +4,7 @@
  * Description:       Example block scaffolded with Create Block tool.
  * Requires at least: 6.6
  * Requires PHP:      7.2
- * Version:           1.0.4
+ * Version:           1.0.5
  * Author:            The WordPress Contributors
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -39,17 +39,6 @@ function dahlia_blocks_load_textdomain() {
     load_plugin_textdomain( 'dahlia-blocks', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 }
 add_action( 'init', 'dahlia_blocks_load_textdomain' );
-
-function dahlia_blocks_enqueue_fonts() {
-    wp_enqueue_style(
-        'dahlia-fonts',
-        'https://fonts.googleapis.com/css2?family=Quicksand:wght@400&display=swap',
-        array(),
-        null
-    );
-}
-add_action( 'enqueue_block_editor_assets', 'dahlia_blocks_enqueue_fonts' );
-add_action( 'wp_enqueue_scripts', 'dahlia_blocks_enqueue_fonts' );
 
 /**
  * Guardar el tiempo de lectura basado en el contenido de los bloques `story-container`.
