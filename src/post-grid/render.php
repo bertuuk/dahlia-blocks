@@ -36,6 +36,25 @@ $story_values                  = $attributes['storyValues'] ?? [];
 $single_related_posts			= $attributes['singleRelatedPost'] ?? false;
 $exclude_query_posts			= $attributes['excludeQueryPosts'] ?? false;
 
+$lock_defaults = apply_filters(
+	'dahlia_blocks_post_grid_lock_defaults',
+	array(
+		'lock_mode' => 'off',
+		'cta_url' => '',
+	),
+	$attributes
+);
+$lock_mode = $lock_defaults['lock_mode'] ?? 'off';
+$lock_mode = $lock_mode === 'default' ? 'off' : $lock_mode;
+if (!in_array($lock_mode, array('off', 'locked', 'hidden'), true)) {
+	$lock_mode = 'off';
+}
+$lock_cta_url = $lock_defaults['cta_url'] ?? '';
+$display_posts_limit = $posts_per_page;
+$query_posts_per_page = $posts_per_page;
+if ($lock_mode === 'hidden' && $posts_per_page > 0) {
+	$query_posts_per_page = $posts_per_page * 3;
+}
 $allowed_title_tags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'span'];
 if (!in_array($title_tag, $allowed_title_tags, true)) {
 	$title_tag = 'h2';
@@ -108,12 +127,12 @@ if (! empty($attributes['isFavorites'])) {
 		$args['post__in'] = $related_post_ids;
 		$args['orderby'] = 'post__in'; // Mantener el orden específico de coincidencias
 		$args['offset'] =  $query_offset;
-		$args['posts_per_page'] =  $posts_per_page;
+		$args['posts_per_page'] =  $query_posts_per_page;
 	}
 } elseif (is_archive()) {
 	$args = [
 		'orderby'        => 'date',
-		'posts_per_page' => $posts_per_page,
+		'posts_per_page' => $query_posts_per_page,
 	];
 	if (is_category()) {
 		$args['category_name'] = single_cat_title('', false);
@@ -126,7 +145,7 @@ if (! empty($attributes['isFavorites'])) {
 	// Query predeterminada del bloc
 	$args = array(
 		'post_type'      => $post_type,
-		'posts_per_page' => $posts_per_page,
+		'posts_per_page' => $query_posts_per_page,
 		'orderby'        => 'date',
 		'order'          => 'DESC',
 		'offset'		 =>  $query_offset
@@ -189,6 +208,7 @@ if (!empty($story_values)) {
 	];
 }
 
+$args = apply_filters('dahlia_blocks_post_grid_query_args', $args, $attributes);
 
 $query = new WP_Query($args);
 
@@ -226,10 +246,22 @@ if ($query->have_posts()) :
 				<?php endif; ?>>
 				<?php
 
+				$displayed_count = 0;
 				while ($query->have_posts()) :
 					$query->the_post();
-					$dahlia_rendered_posts[] = get_the_ID();
 					$reading_time = get_post_meta(get_the_ID(), '_reading_time', true);
+					$post_id = get_the_ID();
+					$has_access = apply_filters('dahlia_blocks_post_grid_post_access', true, $post_id, $attributes);
+					$is_locked = (! $has_access && $lock_mode === 'locked');
+					if (! $has_access && $lock_mode === 'hidden') {
+						continue;
+					}
+					$dahlia_rendered_posts[] = $post_id;
+					$locked_url = apply_filters('dahlia_blocks_post_grid_locked_url', '', $post_id, $attributes);
+					if (empty($locked_url)) {
+						$locked_url = $lock_cta_url;
+					}
+					$card_link = $is_locked && !empty($locked_url) ? $locked_url : get_permalink();
 
 				?>
 
@@ -241,13 +273,17 @@ if ($query->have_posts()) :
 						$bg_big_url = "";
 					}; ?>
 
-					<div class="post-grid-item--outter card-style <?php echo esc_attr($card_style . '-card-style'); ?>">
+					<div class="post-grid-item--outter card-style <?php echo esc_attr($card_style . '-card-style' . ($is_locked ? ' is-locked' : '')); ?>">
 						<div class="post-grid-item">
 							<?php if ($card_style === 'focus' || 'highlight') : ?>
-								<div class="card-style__wrapper card-style__<?php echo esc_attr($card_style . ' ' . ($bg_small_url ? '' : 'no-image')); ?> lazyload " style="background-image: url('<?php echo esc_url($bg_small_url); ?>')" data-bgset="<?php echo esc_url($bg_big_url); ?>">
+								<div class="card-style__wrapper card-style__<?php echo esc_attr($card_style . ' ' . ($bg_small_url ? '' : 'no-image')); ?> lazyload " style="background-image: url('<?php echo esc_url($bg_small_url); ?>')" data-bgset="<?php echo esc_url($bg_big_url); ?>"<?php echo $is_locked ? ' aria-hidden="true"' : ''; ?>>
 									<div class="card-style__content">
 										<div class="content-bottom">
-											<a href="<?php the_permalink(); ?>" class="paragraph-regular-2xl content-title"><?php the_title(); ?></a>
+											<?php if (!$is_locked) : ?>
+												<a href="<?php echo esc_url($card_link); ?>" class="paragraph-regular-2xl content-title"><?php the_title(); ?></a>
+											<?php else : ?>
+												<span class="paragraph-regular-2xl content-title"><?php the_title(); ?></span>
+											<?php endif; ?>
 											<?php if ($card_style === 'highlight' && !empty($button_text)) : ?>
 												<div class="card-button">
 													<span><?php echo esc_html($button_text); ?></span><span class="dahlia-icon di-small dahlia-fi-rr-arrow-small-right"></span>
@@ -263,18 +299,40 @@ if ($query->have_posts()) :
 								</div>
 
 							<?php elseif ($card_style === 'detail') : ?>
-								<a href="<?php the_permalink(); ?>">
-									<?php if (has_post_thumbnail()) : ?>
-										<div class="post-thumbnail">
-											<?php the_post_thumbnail('medium'); ?>
-										</div>
-									<?php endif; ?>
-									<h3><?php the_title(); ?></h3>
+								<?php if (!$is_locked) : ?>
+									<a href="<?php echo esc_url($card_link); ?>">
+										<?php if (has_post_thumbnail()) : ?>
+											<div class="post-thumbnail">
+												<?php the_post_thumbnail('medium'); ?>
+											</div>
+										<?php endif; ?>
+										<h3><?php the_title(); ?></h3>
+									</a>
+								<?php else : ?>
+									<div class="post-grid-item__detail" aria-hidden="true">
+										<?php if (has_post_thumbnail()) : ?>
+											<div class="post-thumbnail">
+												<?php the_post_thumbnail('medium'); ?>
+											</div>
+										<?php endif; ?>
+										<h3><?php the_title(); ?></h3>
+									</div>
+								<?php endif; ?>
+							<?php endif; ?>
+							<?php if ($is_locked && !empty($card_link)) : ?>
+								<a class="post-grid-item__lock-overlay" href="<?php echo esc_url($card_link); ?>" aria-label="<?php echo esc_attr__('Contingut bloquejat. Subscriu-te per accedir.', 'dahlia-blocks'); ?>">
+									<span class="post-grid-item__lock-icon" aria-hidden="true">
+										<span class="dahlia-icon dahlia-fi-rr-lock"></span>
+									</span>
 								</a>
 							<?php endif; ?>
 						</div>
 					</div>
 				<?php
+					$displayed_count++;
+					if ($lock_mode === 'hidden' && $displayed_count >= $display_posts_limit) {
+						break;
+					}
 				endwhile;
 				wp_reset_postdata();
 				?>

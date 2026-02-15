@@ -4,8 +4,8 @@
  * Description:       Example block scaffolded with Create Block tool.
  * Requires at least: 6.6
  * Requires PHP:      7.2
- * Version:           1.0.5
- * Author:            The WordPress Contributors
+ * Version:           1.2.0
+ * Author:            Berta Nicolau
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       dahlia-blocks

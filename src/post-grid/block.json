@@ -126,6 +126,22 @@
 		"excludeQueryPosts":{
 			"type": "boolean",
 			"default": false
+		},
+		"contesLockMode": {
+			"type": "string",
+			"default": "default"
+		},
+		"contesLockUseDefaultUrl": {
+			"type": "boolean",
+			"default": true
+		},
+		"contesLockCtaUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"contesLockOnly": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"supports": {
