@@ -29,6 +29,30 @@
 
 /* eslint-disable no-console */
 
+const storyFontUrl = (() => {
+	const currentScript = document.currentScript;
+	if (currentScript && currentScript.src) {
+		return new URL('../../assets/fonts/Quicksand-500.woff2', currentScript.src).toString();
+	}
+	const fallbackScript = document.querySelector('script[src*="story-container/view.js"]');
+	if (fallbackScript && fallbackScript.src) {
+		return new URL('../../assets/fonts/Quicksand-500.woff2', fallbackScript.src).toString();
+	}
+	return null;
+})();
+
+function ensureStoryFontLoaded() {
+	if (!storyFontUrl) {
+		return;
+	}
+	if (document.getElementById('dahlia-story-font-face')) {
+		return;
+	}
+	const style = document.createElement('style');
+	style.id = 'dahlia-story-font-face';
+	style.textContent = "@font-face{font-family:'Quicksand';font-style:normal;font-weight:500;font-display:swap;src:url('" + storyFontUrl + "') format('woff2');}";
+	document.head.appendChild(style);
+}
 
 document.addEventListener('DOMContentLoaded', () => {
 	const containers = document.querySelectorAll('.wp-block-dahlia-blocks-story-container');
@@ -96,6 +120,9 @@ document.addEventListener('DOMContentLoaded', () => {
 				className: 'toggle-font',
 				ariaLabel: 'Canvia la tipografia',
 				action: () => {
+					if (!container.classList.contains('story-block-font')) {
+						ensureStoryFontLoaded();
+					}
 					container.classList.toggle('story-block-font');
 				}
 			}

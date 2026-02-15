@@ -7,24 +7,25 @@
  */
 // Desestructuramos los atributos para facilitar el manejo.
 
-$card_style                		= $attributes['cardStyle'] ?? 'focus';
-$button_text					= $attributes['buttonText'] ?? 'Go';
+$card_style                		= sanitize_html_class($attributes['cardStyle'] ?? 'focus');
+$button_text					= sanitize_text_field($attributes['buttonText'] ?? 'Go');
 $layout                			= $attributes['layout'] ?? 'grid';
-$posts_per_page        			= $attributes['postsPerPage'] ?? 6;
+$layout_class                   = sanitize_html_class($layout);
+$posts_per_page        			= isset($attributes['postsPerPage']) ? (int) $attributes['postsPerPage'] : 6;
 $category              			= $attributes['category'] ?? '';
 $categories						= $attributes['categories'] ?? '';
 $tag                  			= $attributes['tag'] ?? '';
 $filter_by             			= $attributes['filterBy'] ?? 'date';
-$query_offset             		= $attributes['queryOffset'] ?? '0';
-$grid_items_desktop            	= $attributes['gridItemsDesktop'] ?? 4;
-$grid_items_mobile           	= $attributes['gridItemsMobile'] ?? 2;
+$query_offset             		= isset($attributes['queryOffset']) ? (int) $attributes['queryOffset'] : 0;
+$grid_items_desktop            	= isset($attributes['gridItemsDesktop']) ? (int) $attributes['gridItemsDesktop'] : 4;
+$grid_items_mobile           	= isset($attributes['gridItemsMobile']) ? (int) $attributes['gridItemsMobile'] : 2;
 $post_grid_title				= $attributes['postGridTitle'] ?? '';
 $title_tag						= $attributes['titleTag'] ?? 'h2';
-$carousel_items_large_desktop 	= $attributes['carouselItemsLargeDesktop'] ?? 4;
-$carousel_items_desktop 		= $attributes['carouselItemsDesktop'] ?? 4;
-$carousel_items_tablet  		= $attributes['carouselItemsTablet'] ?? 2;
-$carousel_items_mobile  		= $attributes['carouselItemsMobile'] ?? 1;
-$carousel_slide_by      		= $attributes['carouselSlideBy'] ?? 1;
+$carousel_items_large_desktop 	= isset($attributes['carouselItemsLargeDesktop']) ? (int) $attributes['carouselItemsLargeDesktop'] : 4;
+$carousel_items_desktop 		= isset($attributes['carouselItemsDesktop']) ? (int) $attributes['carouselItemsDesktop'] : 4;
+$carousel_items_tablet  		= isset($attributes['carouselItemsTablet']) ? (int) $attributes['carouselItemsTablet'] : 2;
+$carousel_items_mobile  		= isset($attributes['carouselItemsMobile']) ? (int) $attributes['carouselItemsMobile'] : 1;
+$carousel_slide_by      		= isset($attributes['carouselSlideBy']) ? (int) $attributes['carouselSlideBy'] : 1;
 $carousel_peek          		= $attributes['carouselPeek'] ?? false;
 $carousel_autoplay      		= $attributes['carouselAutoplay'] ?? false;
 $carousel_loop      			= $attributes['carouselLoop'] ?? false;
@@ -34,6 +35,30 @@ $posts_in            			= $attributes['postsIn'] ?? '';
 $story_values                  = $attributes['storyValues'] ?? [];
 $single_related_posts			= $attributes['singleRelatedPost'] ?? false;
 $exclude_query_posts			= $attributes['excludeQueryPosts'] ?? false;
+
+$lock_defaults = apply_filters(
+	'dahlia_blocks_post_grid_lock_defaults',
+	array(
+		'lock_mode' => 'off',
+		'cta_url' => '',
+	),
+	$attributes
+);
+$lock_mode = $lock_defaults['lock_mode'] ?? 'off';
+$lock_mode = $lock_mode === 'default' ? 'off' : $lock_mode;
+if (!in_array($lock_mode, array('off', 'locked', 'hidden'), true)) {
+	$lock_mode = 'off';
+}
+$lock_cta_url = $lock_defaults['cta_url'] ?? '';
+$display_posts_limit = $posts_per_page;
+$query_posts_per_page = $posts_per_page;
+if ($lock_mode === 'hidden' && $posts_per_page > 0) {
+	$query_posts_per_page = $posts_per_page * 3;
+}
+$allowed_title_tags = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'span'];
+if (!in_array($title_tag, $allowed_title_tags, true)) {
+	$title_tag = 'h2';
+}
 
 global $post;
 global $dahlia_rendered_posts;
@@ -102,12 +127,12 @@ if (! empty($attributes['isFavorites'])) {
 		$args['post__in'] = $related_post_ids;
 		$args['orderby'] = 'post__in'; // Mantener el orden específico de coincidencias
 		$args['offset'] =  $query_offset;
-		$args['posts_per_page'] =  $posts_per_page;
+		$args['posts_per_page'] =  $query_posts_per_page;
 	}
 } elseif (is_archive()) {
 	$args = [
 		'orderby'        => 'date',
-		'posts_per_page' => $posts_per_page,
+		'posts_per_page' => $query_posts_per_page,
 	];
 	if (is_category()) {
 		$args['category_name'] = single_cat_title('', false);
@@ -120,7 +145,7 @@ if (! empty($attributes['isFavorites'])) {
 	// Query predeterminada del bloc
 	$args = array(
 		'post_type'      => $post_type,
-		'posts_per_page' => $posts_per_page,
+		'posts_per_page' => $query_posts_per_page,
 		'orderby'        => 'date',
 		'order'          => 'DESC',
 		'offset'		 =>  $query_offset
@@ -183,31 +208,32 @@ if (!empty($story_values)) {
 	];
 }
 
+$args = apply_filters('dahlia_blocks_post_grid_query_args', $args, $attributes);
 
 $query = new WP_Query($args);
 
 
 if ($query->have_posts()) :
 ?>
-	<div class="wp-block-group alignfull is-layout-constrained wp-block-group-is-layout-constrained <?php echo ('carousel' === $layout) ? 'outer-container-carousel' : ''; ?>">
-		<div <?php echo get_block_wrapper_attributes(['class' => 'wrapper-' . $layout]); ?>>
+	<div class="wp-block-group alignfull is-layout-constrained wp-block-group-is-layout-constrained <?php echo esc_attr(('carousel' === $layout) ? 'outer-container-carousel' : ''); ?>">
+		<div <?php echo get_block_wrapper_attributes(['class' => 'wrapper-' . $layout_class]); ?>>
 			<?php if ('carousel' === $layout) : ?>
 				<div class="post-grid-carousel-header">
 					<div class="post-grid-title">
 						<?php if (!empty($title_tag)) : ?>
-							<<?php echo $title_tag ?> class="wp-block-heading"><?php echo $post_grid_title ?></<?php echo $title_tag ?>>
+							<<?php echo $title_tag; ?> class="wp-block-heading"><?php echo esc_html($post_grid_title); ?></<?php echo $title_tag; ?>>
 						<?php endif; ?>
 					</div>
 					<div class="tns-controls">
-						<button class="tns-prev" aria-label="<?php echo esc_attr__('Previous slide', 'dahlia-blocks') . " " . $post_grid_title ?>"><span class="dahlia-icon di-small dahlia-fi-rr-angle-small-left" aria-hidden="true"></span></button>
-						<button class="tns-next" aria-label="<?php echo esc_attr__('Next slide', 'dahlia-blocks') . " " . $post_grid_title ?> "><span class="dahlia-icon di-small dahlia-fi-rr-angle-small-right" aria-hidden="true"></span></button>
+						<button class="tns-prev" aria-label="<?php echo esc_attr(sprintf('%s %s', __('Previous slide', 'dahlia-blocks'), $post_grid_title)); ?>"><span class="dahlia-icon di-small dahlia-fi-rr-angle-small-left" aria-hidden="true"></span></button>
+						<button class="tns-next" aria-label="<?php echo esc_attr(sprintf('%s %s', __('Next slide', 'dahlia-blocks'), $post_grid_title)); ?>"><span class="dahlia-icon di-small dahlia-fi-rr-angle-small-right" aria-hidden="true"></span></button>
 					</div>
 				</div>
 			<?php endif; ?>
 			<div
-				class="post-grid <?php echo ('carousel' === $layout) ? 'post-grid-carousel' : 'post-grid-grid row-items-lg-' . $grid_items_desktop . ' row-items-sm-' . $grid_items_mobile; ?>"
+				class="post-grid <?php echo esc_attr(('carousel' === $layout) ? 'post-grid-carousel' : 'post-grid-grid row-items-lg-' . $grid_items_desktop . ' row-items-sm-' . $grid_items_mobile); ?>"
 				<?php if ('carousel' === $layout) : ?>
-				role="region" aria-roledescription="carousel" aria-label="<?php echo esc_attr__('Carousel', 'dahlia-blocks') . $post_grid_title; ?>"
+				role="region" aria-roledescription="carousel" aria-label="<?php echo esc_attr(sprintf('%s %s', __('Carousel', 'dahlia-blocks'), $post_grid_title)); ?>"
 				data-items-large-desktop="<?php echo esc_attr($carousel_items_large_desktop); ?>"
 				data-items-desktop="<?php echo esc_attr($carousel_items_desktop); ?>"
 				data-items-tablet="<?php echo esc_attr($carousel_items_tablet); ?>"
@@ -220,10 +246,22 @@ if ($query->have_posts()) :
 				<?php endif; ?>>
 				<?php
 
+				$displayed_count = 0;
 				while ($query->have_posts()) :
 					$query->the_post();
-					$dahlia_rendered_posts[] = get_the_ID();
 					$reading_time = get_post_meta(get_the_ID(), '_reading_time', true);
+					$post_id = get_the_ID();
+					$has_access = apply_filters('dahlia_blocks_post_grid_post_access', true, $post_id, $attributes);
+					$is_locked = (! $has_access && $lock_mode === 'locked');
+					if (! $has_access && $lock_mode === 'hidden') {
+						continue;
+					}
+					$dahlia_rendered_posts[] = $post_id;
+					$locked_url = apply_filters('dahlia_blocks_post_grid_locked_url', '', $post_id, $attributes);
+					if (empty($locked_url)) {
+						$locked_url = $lock_cta_url;
+					}
+					$card_link = $is_locked && !empty($locked_url) ? $locked_url : get_permalink();
 
 				?>
 
@@ -235,16 +273,20 @@ if ($query->have_posts()) :
 						$bg_big_url = "";
 					}; ?>
 
-					<div class="post-grid-item--outter card-style <?php echo $card_style . '-card-style '; ?>">
+					<div class="post-grid-item--outter card-style <?php echo esc_attr($card_style . '-card-style' . ($is_locked ? ' is-locked' : '')); ?>">
 						<div class="post-grid-item">
 							<?php if ($card_style === 'focus' || 'highlight') : ?>
-								<div class="card-style__wrapper card-style__<?php echo $card_style . ' ' . ($bg_small_url ? '' : 'no-image')  ?> lazyload " style="background-image: url('<?php echo esc_url($bg_small_url) ?>')" data-bgset="<?php echo esc_url($bg_big_url) ?>">
+								<div class="card-style__wrapper card-style__<?php echo esc_attr($card_style . ' ' . ($bg_small_url ? '' : 'no-image')); ?> lazyload " style="background-image: url('<?php echo esc_url($bg_small_url); ?>')" data-bgset="<?php echo esc_url($bg_big_url); ?>"<?php echo $is_locked ? ' aria-hidden="true"' : ''; ?>>
 									<div class="card-style__content">
 										<div class="content-bottom">
-											<a href="<?php the_permalink(); ?>" class="paragraph-regular-2xl content-title"><?php the_title(); ?></a>
+											<?php if (!$is_locked) : ?>
+												<a href="<?php echo esc_url($card_link); ?>" class="paragraph-regular-2xl content-title"><?php the_title(); ?></a>
+											<?php else : ?>
+												<span class="paragraph-regular-2xl content-title"><?php the_title(); ?></span>
+											<?php endif; ?>
 											<?php if ($card_style === 'highlight' && !empty($button_text)) : ?>
 												<div class="card-button">
-													<span><?php echo $button_text ?></span><span class="dahlia-icon di-small dahlia-fi-rr-arrow-small-right"></span>
+													<span><?php echo esc_html($button_text); ?></span><span class="dahlia-icon di-small dahlia-fi-rr-arrow-small-right"></span>
 												</div>
 											<?php endif; ?>
 										</div>
@@ -257,18 +299,40 @@ if ($query->have_posts()) :
 								</div>
 
 							<?php elseif ($card_style === 'detail') : ?>
-								<a href="<?php the_permalink(); ?>">
-									<?php if (has_post_thumbnail()) : ?>
-										<div class="post-thumbnail">
-											<?php the_post_thumbnail('medium'); ?>
-										</div>
-									<?php endif; ?>
-									<h3><?php the_title(); ?></h3>
+								<?php if (!$is_locked) : ?>
+									<a href="<?php echo esc_url($card_link); ?>">
+										<?php if (has_post_thumbnail()) : ?>
+											<div class="post-thumbnail">
+												<?php the_post_thumbnail('medium'); ?>
+											</div>
+										<?php endif; ?>
+										<h3><?php the_title(); ?></h3>
+									</a>
+								<?php else : ?>
+									<div class="post-grid-item__detail" aria-hidden="true">
+										<?php if (has_post_thumbnail()) : ?>
+											<div class="post-thumbnail">
+												<?php the_post_thumbnail('medium'); ?>
+											</div>
+										<?php endif; ?>
+										<h3><?php the_title(); ?></h3>
+									</div>
+								<?php endif; ?>
+							<?php endif; ?>
+							<?php if ($is_locked && !empty($card_link)) : ?>
+								<a class="post-grid-item__lock-overlay" href="<?php echo esc_url($card_link); ?>" aria-label="<?php echo esc_attr__('Contingut bloquejat. Subscriu-te per accedir.', 'dahlia-blocks'); ?>">
+									<span class="post-grid-item__lock-icon" aria-hidden="true">
+										<span class="dahlia-icon dahlia-fi-rr-lock"></span>
+									</span>
 								</a>
 							<?php endif; ?>
 						</div>
 					</div>
 				<?php
+					$displayed_count++;
+					if ($lock_mode === 'hidden' && $displayed_count >= $display_posts_limit) {
+						break;
+					}
 				endwhile;
 				wp_reset_postdata();
 				?>
